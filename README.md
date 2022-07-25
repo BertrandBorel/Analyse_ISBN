@@ -21,8 +21,7 @@ Personal project aiming to set up an application capable of:
 - scan the barcode of a book to retrieve its ISBN
 - Query the database to retrieve information on the book
 - Give the user to retrieve the information in a txt or csv file.
-
 It will therefore be easy to quickly build a complete bibliography with this application.
 -----------------------------------------------------------------------------------------------------
 
-En cours de construction
+### En cours de construction
