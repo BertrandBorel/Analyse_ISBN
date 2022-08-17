@@ -13,7 +13,7 @@ fenetre = Tk()
 # Personnalisation de la fenêtre
 fenetre.title("Application ISBN")
 fenetre.geometry("300x300")
-fenetre.minsize(600, 500)
+fenetre.minsize(1000, 800)
 # couleur arrière-plan :
 fenetre.config(background='#482b7d')
 
@@ -23,7 +23,7 @@ fenetre.config(background='#482b7d')
 saisie_ISBN = Entry(fenetre, width=50)
 saisie_ISBN.pack()
 # ISBN par défaut : pour un exemple
-saisie_ISBN.insert(0, "978-2253085706")
+saisie_ISBN.insert(0, "978-1526646651")
 
 
 # ----------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ def research_ISBN(x):
         full_references.append(liste_ref)
             
     except : 
-        erreur_ISBN = Label(fenetre, text="ISBN introuvable...", bg="#482b7d", fg="white")
+        erreur_ISBN = Label(fenetre, text="ISBN introuvable ou données incomplètes...", bg="#482b7d", fg="white")
         erreur_ISBN.pack()
 
     label_reference = Label(fenetre, text=liste_ref, bg="#482b7d", fg="white")
@@ -159,7 +159,12 @@ add_button.pack()
 - permettre de choisir le service (worldcat, openlib, goob, wiki...)
 - Problème : date/isbn inscrit en tant que float dans le csv = problème réglé ?
 - fonction insertion data dans la bdd
-- interroger bdd pour récupérer infos (via l'isbn)
+
+
+
+- Menu principal :
+    - chercher informations dans la bdd
+    - sinon chercher en ligne
 '''
 
 fenetre.mainloop()
