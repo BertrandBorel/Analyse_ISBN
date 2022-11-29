@@ -50,7 +50,7 @@ def save_coordinates(new_coordinates, image_name):
             file.write(str(liste_coordonnees[x]) + " ")
 
 # Fonction : sauvegarder l'image de base (pour l'entraînement du modèle)
-def save_image(nom_image):
+def save_image(nom_image, chemin_destination="./images_labels/"):
     extension = nom_image
     # suppression des extensions dans le nom de l'image
     extensions = ['.PNG', '.png', '.JPG', '.jpg']
@@ -59,7 +59,7 @@ def save_image(nom_image):
     
     # chemin des images sources : variable "chemin"
     # chemin des images de destination
-    chemin_destination = "./images_labels/"
+    # chemin_destination = "./images_labels/"
 
     # ouverture de l'image dans le dossier source
     new_image = Image.open(chemin + extension)
@@ -76,20 +76,31 @@ for im in dossier_images :
     coordonnees = results.pandas().xyxy[0]
 
     # Montrer l'image avec le label 
-    # results.show()
+    results.show()
 
     # suppression des extensions dans le nom de l'image
     extensions = ['.PNG', '.png', '.JPG', '.jpg']
     for ext in extensions:
         im = im.replace(ext, "")
 
-     # sauvegarder les coordonnées
-    save_coordinates(coordonnees, im)
+    # Décider de garder ou non l'image labélisée + les coordonnées
+    message = input("Sauvegarder l'image ? (o/n) :")
+    if message == "o":
+        # sauvegarde l'image dans un fichier
+        save_image(nom_image)
 
-    # sauvegarder l'image (si bien labélisée)
-    save_image("1.PNG")
+        # sauvegarder les coordonnées
+        save_coordinates(coordonnees, im)
+        
+    else :
+        # save l'image dans un autre fichier
+        save_image(nom_image, "./im_relabeliser/")
 
     
+
+     
+
+   
 
     # Sauvegarde de l'image avec le label
     # results.save(save_dir='images_labels', exist_ok = True)
@@ -105,14 +116,6 @@ for im in dossier_images :
 #--- coordonnees = results.pandas().xyxy[0]
 # print(coordonnees)
 # results.show()
-
-
-
-
-
-
-# # appel fonction : sauvegarde des coordonnées dans un fichier txt
-# ---save_coordinates(coordonnees, image)
 
 
 
