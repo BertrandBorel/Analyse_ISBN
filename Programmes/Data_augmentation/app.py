@@ -57,13 +57,12 @@ def save_image(nom_image):
     for ext in extensions:
         nom_image = nom_image.replace(ext, "")
     
-    # chemin des images sources :
-    chemin_source = "./test_images/"
+    # chemin des images sources : variable "chemin"
     # chemin des images de destination
     chemin_destination = "./images_labels/"
 
     # ouverture de l'image dans le dossier source
-    new_image = Image.open(chemin_source + extension)
+    new_image = Image.open(chemin + extension)
     # sauvegarde de l'image dans le dossier de destination
     new_image = new_image.save(chemin_destination + nom_image + ".png")
 
@@ -88,7 +87,7 @@ for im in dossier_images :
     save_coordinates(coordonnees, im)
 
     # sauvegarder l'image (si bien labélisée)
-    # save_image(nom_image)
+    save_image("1.PNG")
 
     
 
