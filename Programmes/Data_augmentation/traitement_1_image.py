@@ -8,7 +8,6 @@ sys.path.insert(0, './yolov5')
 
 
 # Chargement du modèle
-# model = torch.load('model.pt')
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'model.pt')  # nom du modèle : 'model.pt'
 
 
@@ -41,5 +40,5 @@ def save_coordinates(new_coordinates, image_name):
         for x in range(4) : 
             file.write(str(liste_coordonnees[x]) + " ")
 
-# # appel fonction : sauvegarde des coordonnées dans un fichier txt
+# appel fonction : sauvegarde des coordonnées dans un fichier txt
 save_coordinates(coordonnees, image)
