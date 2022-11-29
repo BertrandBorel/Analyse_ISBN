@@ -31,12 +31,12 @@ sys.path.insert(0, './yolov5')
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'model.pt')  # nom du modèle : 'model.pt'
 
 
-# Pour une image : 
-image = "6" # nom de l'image (plus facile pour sauvegarder les labels)
-# extension de l'image
-extension = ".png"
-# nom complet de l'image
-image_name = image + extension # for image in dossier_images : 
+# # Pour une image : 
+# image = "6" # nom de l'image (plus facile pour sauvegarder les labels)
+# # extension de l'image
+# extension = ".png"
+# # nom complet de l'image
+# image_name = image + extension # for image in dossier_images : 
 
 
 # # Pour 1 dossier :
@@ -67,7 +67,12 @@ for im in dossier_images :
     # Montrer l'image avec le label 
     # results.show()
 
-    # sauvegarder les coordonnées
+    # suppression des extensions dans le nom de l'image
+    extensions = ['.PNG', '.png', '.JPG', '.jpg']
+    for ext in extensions:
+        im = im.replace(ext, "")
+
+     # sauvegarder les coordonnées
     save_coordinates(coordonnees, im)
 
     
