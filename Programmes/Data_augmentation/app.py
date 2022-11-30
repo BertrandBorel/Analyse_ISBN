@@ -19,6 +19,7 @@ si : - la labelisation est correcte, sauvegarde les cordonnées dans un fichier 
 
 
 # Importations : 
+
 import os
 import torch
 from PIL import Image 
@@ -26,6 +27,9 @@ import PIL
 # git clone Yolov5 puis :
 import sys
 sys.path.insert(0, './yolov5')
+
+# import du fichier où sont stockés les fonctions
+import mes_fonctions
 
 
 # Chargement du modèle
@@ -37,17 +41,6 @@ chemin = "./test_images/"
 # liste contenant les noms de toutes les images du dossier 
 dossier_images = os.listdir(chemin) 
 
-# Fonction : sauvegarde les coordonnées dans un fichier texte :
-def save_coordinates(new_coordinates, image_name):
-    # On récupère les coordonnées dans une liste
-    liste_coordonnees = [x for x in new_coordinates.iloc[0]]
-    # sauvegarder les nouvelles coordonnées dans un fichier txt
-    with open("labels/" + image_name + ".txt", 'w') as file :
-        # insertion de la classe
-        file.write("0 ")
-        # insertion des coordonnées
-        for x in range(4) : 
-            file.write(str(liste_coordonnees[x]) + " ")
 
 # Fonction : sauvegarder l'image de base (pour l'entraînement du modèle)
 def save_image(nom_image, chemin_destination="./images_labels/"):
@@ -90,11 +83,16 @@ for im in dossier_images :
         save_image(nom_image)
 
         # sauvegarder les coordonnées
-        save_coordinates(coordonnees, im)
+        mes_fonctions.save_coordinates(coordonnees, im)
         
     else :
+        message_2 = input("Conserver l'image pour la labeliser plus tard ? (o/n) :")
+        if message_2 == "o":
         # save l'image dans un autre fichier
-        save_image(nom_image, "./im_relabeliser/")
+            save_image(nom_image, "./im_relabeliser/")
+        else : 
+            # si l'image n'est pas utilisable : on retourne juste un message
+            print("Image inutilisable, fichier ignoré.")
 
     
 
@@ -119,3 +117,5 @@ for im in dossier_images :
 
 
 
+# Message de fin
+print("====> Fin du programme <====")
